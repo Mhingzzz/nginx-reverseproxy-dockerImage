@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  app:
+    image: "jc21/nginx-proxy-manager:github-pr-3089"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
+  web:
+    image: "ball46/todo-list"
+    ports:
+      - "3001:3000"
+
+  web2:
+    image: "ball46/to-do-test"
+    ports:
+      - "3002:3000"
